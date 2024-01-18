@@ -1,1 +1,80 @@
-<p>display-album works!</p>
+<!-- Display album details if album is available -->
+<div align="center" *ngIf="album">
+  <!-- Card layout with a maximum width of 500px -->
+  <div class="card mb-6" style="max-width: 500px">
+    <div class="row no-gutters">
+      <!-- Column for album image -->
+      <div class="col-md-4">
+        <!-- Container for image with max height and width -->
+        <div style="height: 150px; width: 150px; overflow: hidden">
+          <!-- Display album image -->
+          <img
+            src="assets/images/{{ album.image }}"
+            class="card-img"
+            alt="{{ album.title }}"
+            width="150px"
+            height="150px"
+          />
+        </div>
+      </div>
+      <!-- Column for album details -->
+      <div class="col-md-8">
+        <div class="card-body">
+          <!-- Display album title -->
+          <h5 class="card-title">{{ album.title }}</h5>
+          <!-- Display album description -->
+          <p class="card-text">{{ album.description }}</p>
+          <!-- Display album year -->
+          <p class="card-text">
+            <small class="text-muted">{{ album.year }}</small>
+          </p>
+          <!-- Table for action icons -->
+          <table>
+            <tr>
+              <!-- Icon to toggle tracks collapse -->
+              <td width="50px" align="center">
+                <a
+                  href="#"
+                  data-toggle="collapse"
+                  data-target="#collapseTracks"
+                  aria-expanded="false"
+                  aria-controls="collapseTracks"
+                  ><i class="fa fa-list"></i
+                ></a>
+              </td>
+              <!-- Icon to navigate to edit route -->
+              <td width="50px" align="center">
+                <a [routerLink]="['/edit', album.artist, album.albumId]"
+                  ><i class="fa fa-edit"></i
+                ></a>
+              </td>
+              <!-- Icon to navigate to delete route -->
+              <td width="50px" align="center">
+                <a [routerLink]="['/delete', album.artist, album.albumId]"
+                  ><i class="fa fa-trash"></i
+                ></a>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Collapsible section for displaying tracks -->
+<div
+  class="collapse"
+  id="collapseTracks"
+  style="margin-left: 50px; margin-right: 50px"
+>
+  <div class="card card-body">
+    <!-- List of tracks displayed in a flush list group -->
+    <ul class="list-group-flush">
+      <!-- Iterate over tracks and display track number and title -->
+      <li class="list-group-item" *ngFor="let track of album!.tracks">
+        {{ track.number }}. {{ track.title }}
+      </li>
+    </ul>
+  </div>
+</div>

@@ -6,61 +6,68 @@ import { MusicServiceService } from '../service/music-service.service';
 @Component({
   selector: 'app-create-album',
   templateUrl: './create-album.component.html',
-  styleUrls: ['./create-album.component.css']
+  styleUrls: ['./create-album.component.css'],
 })
 export class CreateAlbumComponent implements OnInit {
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  // The Album object to be created and submitted
+  album: Album = {
+    albumId: Math.floor(Math.random() * 1000000),
+    title: '',
+    artist: '',
+    description: '',
+    year: '',
+    image: '',
+    tracks: [],
+  };
+  // Raw string input for album tracks
+  tracksRaw: string = '';
+
+  // Flag to track whether the album was successfully submitted
+  wasSubmitted: boolean = false;
+
+  constructor(private service: MusicServiceService) { }
+
+  ngOnInit() { }
+
+  // Method triggered when the form is submitted
+  public onSubmit() {
+    // Parse the raw tracks input into Track objects
+    const tracks: Track[] = this.parseTracks(this.tracksRaw);
+
+    // Assign the parsed tracks to the album
+    this.album.tracks = tracks;
+
+    // Call the service to create the new Album
+    const status = this.service.createAlbum(this.album);
+
+    // Log the status of the createAlbum operation
+    console.log('The return from createAlbum() was ' + status);
+
+    // Set the flag to indicate that the album was submitted successfully
+    this.wasSubmitted = true;
   }
 
-  // album: Album = {
-  //   albumId: Math.floor(Math.random() * 1000000),
-  //   title: "",
-  //   artist: "",
-  //   description: "",
-  //   year: "",
-  //   image: "",
-  //   tracks: [],
-  // };
+  // Private method to parse raw track data into Track objects
+  private parseTracks(rawTracks: string): Track[] {
+    const tracks: Track[] = [];
+    const lines = rawTracks.split('\n');
 
-  // tracksRaw: string = "";
-  // wasSubmitted: boolean = false;
+    // Iterate through each line of raw track data
+    lines.forEach((line, index) => {
+      // Split each line into title, lyrics, and video parts
+      const [title, lyrics, video] = line.split(':');
 
-  // constructor(private service: MusicServiceService) { }
+      // Create a new Track object and add it to the tracks array
+      tracks.push({
+        trackId: Math.floor(Math.random() * 1000000),
+        title: title,
+        number: index + 1,
+        video: video || '',
+        lyrics: lyrics || ''
+      });
+    });
 
-  // ngOnInit() {
-  // }
-
-  // public onSubmit() {
-  //   // Parse the Tracks and add to the Album then call the Service to create the new Album
-  //   let tracks: Track[] = [];
-  //   let tracksAll = this.tracksRaw.split('\n');
-  //   for (let i = 0; i < tracksAll.length; ++i) {
-  //     let title = "";
-  //     let lyrics = "";
-  //     let video = "";
-  //     let trackInfo = tracksAll[i];
-  //     let trackParts = trackInfo.split(':');
-  //     if (trackParts.length == 3) {
-  //       title = trackParts[0];
-  //       lyrics = trackParts[1];
-  //       video = trackParts[2];
-  //     }
-  //     else if (trackParts.length == 2) {
-  //       title = trackParts[0];
-  //       lyrics = trackParts[1];
-  //     }
-  //     else {
-  //       title = trackParts[0];
-  //     }
-  //     tracks.push(
-  //       { trackId: Math.floor(Math.random() * 1000000), number: i + 1, title, lyrics, video }
-  //     );
-  //   }
-  //   this.album.tracks = tracks;
-  //   console.log(this.album);
-  //   let status = this.service.createAlbum(this.album);
-  //   console.log("The return from createAlbum() was " + status);
-  //   this.wasSubmitted = true;
-  // }
+    // Return the array of parsed Track objects
+    return tracks;
+  }
 }

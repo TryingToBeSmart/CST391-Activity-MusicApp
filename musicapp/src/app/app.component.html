@@ -1,28 +1,62 @@
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}
-  </h1>
+<!-- Welcome Message -->
+<div style="text-align: center">
+  <h1>Welcome to {{ title }}</h1>
 </div>
 
+<!-- Navigation Bar -->
 <div>
-  <nav class="navbar navbar-expand-lg bg-light p-0">
+  <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
     <div class="container">
-      <a class="navbar-brand" routerLink="#">My Music</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- Brand Link -->
+      <a class="navbar-brand" href="#">My Music<br /></a>
+
+      <!-- Navbar Toggler Button -->
+      <button
+        class="navbar-toggler"
+        data-toggle="collapse"
+        data-target="#navcol-1"
+      >
+        <span class="sr-only">Toggle navigation</span>
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item" role="presentation"><a class="nav-link" routerLink="https://www.gcu.edu" target="_blank">GCU
-              Home Page</a></li>
-          <li class="nav-item" role="presentation"><a class="nav-link" routerLink="/create">Create Album</a></li>
-          <li class="nav-item" role="presentation"><a class="nav-link" (click)="displayArtistList()">Artist List</a>
-          <li class="nav-item"><a class="nav-link" routerLink="" (click)="displayVersion()">About</a></li>
+
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse" id="navcol-1">
+        <ul class="nav navbar-nav mr-auto">
+          <!-- GCU Home Page Link -->
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" href="https://www.gcu.edu" target="_blank"
+              >GCU Home Page</a
+            >
+          </li>
+
+          <!-- Create Album Link -->
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" [routerLink]="['/create']">Create Album</a>
+          </li>
+
+          <!-- Artist List Link -->
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" routerLink="" (click)="displayArtistList()"
+              >Artist List</a
+            >
+          </li>
         </ul>
+
+        <!-- About Button -->
+        <span class="navbar-text actions">
+          <a
+            class="btn btn-light action-button"
+            role="button"
+            href="#"
+            (click)="displayVersion()"
+            >About</a
+          >
+        </span>
       </div>
     </div>
   </nav>
 </div>
 
+<!-- Router Outlet for Displaying Components -->
 <router-outlet></router-outlet>

@@ -10,11 +10,23 @@ export class AppComponent {
   title = 'My Music Collection';
   version = "1.0";
 
+  constructor(private router: Router) {
+
+  }
+
   displayVersion() {
     alert(`${this.title} Version ${this.version}`);
   }
 
+  /*
+  * passes a timestemp in the query params
+  * (this is required to get the query params
+  * to make changes to the Artist List Component
+  * when it gets reinitialized):
+  */
   displayArtistList() {
-    alert(`display list here`);
+    {
+      this.router.navigate(['list-artists'], { queryParams: { data: new Date()} });
+    }
   }
 }

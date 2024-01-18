@@ -1,1 +1,17 @@
-<p>list-artists works!</p>
+<!-- Display a list of artist buttons when no artist is selected -->
+<div class="artist-list" *ngIf="selectedArtist == null">
+  <!-- Iterate over artists and create a button for each -->
+  <button
+    class="submit-button"
+    *ngFor="let artist of artists"
+    (click)="onSelectArtist(artist)"
+  >
+    {{ artist.name }}
+  </button>
+</div>
+
+<!-- Display selected artist's albums when an artist is selected -->
+<div *ngIf="selectedArtist">
+  <!-- Use app-list-albums component to list albums, passing selected artist as input -->
+  <app-list-albums [artist]="selectedArtist"></app-list-albums>
+</div>

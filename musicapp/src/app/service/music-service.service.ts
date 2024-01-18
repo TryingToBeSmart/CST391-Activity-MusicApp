@@ -7,7 +7,7 @@ import { Album } from '../models/albums.model';
 export class MusicServiceService {
 
   // Initialize a new array of Album objects using the exampledata from sample-music-data.json
-  private albums: Album[] = exampledata;
+  albums: Album[] = exampledata;
 
   public getArtists(): Artist[] {
     let artists: Artist[] = []; // Initialize an empty array called artists of Artist objects
@@ -15,25 +15,23 @@ export class MusicServiceService {
 
     this.albums.forEach(album => artistSet.add(album.artist)); // Iterate through the albums array and add the unique artist strings to the artistSet
 
-    artistSet.forEach(a => artists.push({artist: a})) // Iterate through the artistSet and create new artist objects using the strings and push those objects to the artists array
+    artistSet.forEach(artistName => artists.push({name: artistName})) // Iterate through the artistSet and create new artist objects using the strings and push those objects to the artists array
     return artists;
   }
 
-  public getAlbums(artist: string): Album[] {
+  public getAlbums(artistSearch: string): Album[] {
     // Return the list of Albums
-    return this.albums;
-  }
-
-  public getAlbum(artistName:string, id:number): Album[] | undefined{
-
-    let albums: Album[] = [];
-
+    let artistAlbums: Album[] = [];
     this.albums.forEach(album => {
-      if (album.artist === artistName && album.albumId === id) {
-        albums.push(album);
+      if (album.artist=== artistSearch) {
+        artistAlbums.push(album);
       }
     });
-    return albums;
+    return artistAlbums;
+  }
+
+  public getAlbum(artistName: string, id: number): Album {
+    return this.albums.find(album => album.artist === artistName && album.albumId === id);
   }
 
   public createAlbum(album: Album): number {

@@ -9,6 +9,7 @@ import { CreateAlbumComponent } from './create-album/create-album.component';
 import { DisplayAlbumComponent } from './display-album/display-album.component';
 import { EditAlbumComponent } from './edit-album/edit-album.component';
 import { DeleteAlbumComponent } from './delete-album/delete-album.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DeleteAlbumComponent } from './delete-album/delete-album.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration()
@@ -30,5 +32,5 @@ import { DeleteAlbumComponent } from './delete-album/delete-album.component';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  
+
  }
