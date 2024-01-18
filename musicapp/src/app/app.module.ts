@@ -29,4 +29,6 @@ import { DeleteAlbumComponent } from './delete-album/delete-album.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  
+ }

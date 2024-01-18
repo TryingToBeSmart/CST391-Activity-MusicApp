@@ -1,5 +1,5 @@
 export interface Track {
-    trackID: number;
+    trackId: number;
     title: string;
     number: number;
     video: string;
