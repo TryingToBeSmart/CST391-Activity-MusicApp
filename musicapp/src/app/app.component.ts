@@ -19,7 +19,7 @@ export class AppComponent {
   }
 
   /*
-  * passes a timestemp in the query params
+  * passes a timestamp in the query params
   * (this is required to get the query params
   * to make changes to the Artist List Component
   * when it gets reinitialized):

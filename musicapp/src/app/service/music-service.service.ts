@@ -15,33 +15,39 @@ export class MusicServiceService {
 
     this.albums.forEach(album => artistSet.add(album.artist)); // Iterate through the albums array and add the unique artist strings to the artistSet
 
-    artistSet.forEach(artistName => artists.push({name: artistName})) // Iterate through the artistSet and create new artist objects using the strings and push those objects to the artists array
+    artistSet.forEach(artistName => artists.push({ name: artistName })) // Iterate through the artistSet and create new artist objects using the strings and push those objects to the artists array
     return artists;
   }
 
+  // Return the list of Albums
   public getAlbums(artistSearch: string): Album[] {
-    // Return the list of Albums
     let artistAlbums: Album[] = [];
     this.albums.forEach(album => {
-      if (album.artist=== artistSearch) {
+      if (album.artist === artistSearch) {
         artistAlbums.push(album);
       }
     });
     return artistAlbums;
   }
-
+  // Get Album with artistName and id as parameters
   public getAlbum(artistName: string, id: number): Album {
-    return this.albums.find(album => album.artist === artistName && album.albumId === id);
+    const foundAlbum = this.albums.find(album => album.artist === artistName && album.albumId === id);
+
+    if (foundAlbum) {
+      return foundAlbum;
+    } else {
+      throw new Error(`Album not found for artist: ${artistName} and id: ${id}`);
+    }
   }
 
+  // Add a new Album to the list of Albums
   public createAlbum(album: Album): number {
-    // Add a new Album to the list of Albums
     this.albums.push(album);
     return 1;
   }
 
+  // Search for the Album in the list of Albums and replace it in the list
   public updateAlbum(album: Album): number {
-    // Search for the Album in the list of Albums and replace it in the list
     for (let index = 0; index < this.albums.length; ++index) {
       if (this.albums[index].albumId == album.albumId) {
         this.albums.splice(index, 1, album);
@@ -51,8 +57,8 @@ export class MusicServiceService {
     return -1;
   }
 
-  public deleteAlbum(id: number): number {
-    // Search for the Album in the list of Albums and delete from the list
+  // Search for the Album in the list of Albums and delete from the list
+  public deleteAlbum(id: number, artist:string): number {
     for (let index = 0; index < this.albums.length; ++index) {
       if (this.albums[index].albumId == id) {
         this.albums.splice(index, 1);
