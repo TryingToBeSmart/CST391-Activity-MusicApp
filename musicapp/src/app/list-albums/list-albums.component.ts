@@ -25,7 +25,8 @@ export class ListAlbumsComponent {
     // Check if an artist is selected
     if (this.artist) {
       // Fetch albums for the selected artist from the service
-      this.albums = this.service.getAlbums(this.artist.name);
+      this.service.getAlbumsOfArtist(this.artist.artist,
+        (albums: Album[]) => this.albums = albums);
     }
   }
 

@@ -26,7 +26,17 @@ export class AppComponent {
   */
   displayArtistList() {
     {
-      this.router.navigate(['list-artists'], { queryParams: { data: new Date()} });
+      this.router.navigate(['list-artists'], { queryParams: { data: new Date() } });
     }
+
+    /*
+          const navigationExtras: NavigationExtras = {
+      queryParams: { data: new Date() },
+      queryParamsHandling: 'merge'
+    };
+
+    this.router.navigate(['list-artists'], navigationExtras);
+    */
+
   }
 }

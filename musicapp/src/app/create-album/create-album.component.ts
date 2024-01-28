@@ -38,13 +38,14 @@ export class CreateAlbumComponent implements OnInit {
     this.album.tracks = tracks;
 
     // Call the service to create the new Album
-    const status = this.service.createAlbum(this.album);
-
-    // Log the status of the createAlbum operation
-    console.log('The return from createAlbum() was ' + status);
-
-    // Set the flag to indicate that the album was submitted successfully
-    this.wasSubmitted = true;
+    this.service.createAlbum(this.album, () => {
+      console.log("createAlbum() was success");
+      // Set the flag to indicate that the album was submitted successfully
+      this.wasSubmitted = true;
+    },
+      (error) => {
+        console.log("createAlbum() was failure");
+      });
   }
 
   // Private method to parse raw track data into Track objects

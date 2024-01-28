@@ -12,6 +12,7 @@ export class DisplayAlbumComponent implements OnInit {
   constructor() { }
 
 	ngOnInit() {
-    console.log('Album: ', this.album)
+    console.log('Album: ', this.album);
+    console.log('Tracks: ', this.album?.tracks);
    }
 }

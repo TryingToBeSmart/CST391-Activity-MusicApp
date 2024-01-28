@@ -1,47 +1,56 @@
 {
-  "hash": "4696d777",
-  "browserHash": "954f0af4",
+  "hash": "91a4900b",
+  "browserHash": "0c5419cf",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "25a40c2d",
+      "fileHash": "4270392a",
+      "needsInterop": false
+    },
+    "@angular/common/http": {
+      "src": "../../../../../node_modules/@angular/common/fesm2022/http.mjs",
+      "file": "@angular_common_http.js",
+      "fileHash": "8137b761",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "9aff3efc",
+      "fileHash": "717a3826",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "dfd2f677",
+      "fileHash": "c5bee220",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "7b816136",
+      "fileHash": "08603a15",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "4893bc1d",
+      "fileHash": "4ac22eb3",
       "needsInterop": false
     },
     "@fortawesome/angular-fontawesome": {
       "src": "../../../../../node_modules/@fortawesome/angular-fontawesome/fesm2022/angular-fontawesome.mjs",
       "file": "@fortawesome_angular-fontawesome.js",
-      "fileHash": "7543c3bf",
+      "fileHash": "eeae66fd",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-VIUQSHAA": {
-      "file": "chunk-VIUQSHAA.js"
+    "chunk-5Z6DXN5R": {
+      "file": "chunk-5Z6DXN5R.js"
+    },
+    "chunk-VGMPQXXW": {
+      "file": "chunk-VGMPQXXW.js"
     },
     "chunk-DTDPP5UO": {
       "file": "chunk-DTDPP5UO.js"

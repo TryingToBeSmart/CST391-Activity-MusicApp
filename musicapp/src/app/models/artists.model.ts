@@ -1,4 +1,4 @@
 export interface Artist {
   id?: number;
-  name: string;
+  artist: string;
 }
