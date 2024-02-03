@@ -1,5 +1,39 @@
 # CST391-Activity
 
+## Activity 5 2024/2/4
+So far React is much easier to understand than Angular; maybe the instructions are just more clear.  Everything is working as described at least.  Like Angular, React has a component design.  It appears that only 1 file per component is needed to define the function and view of the component.  The view portion uses the JSX 'language' to define what the component will look like.  JSX looks similar to HTML, "but is really Javascript that is unique to React," according to the activity instructions.  I really liked how easy it was to define component properties in the component and then define their values in the other component that is using it.  
+
+Here's my first React App:
+
+![First App](screenshots/Activity5/First.png)
+
+<br>
+
+## First React Music App
+
+![Hard Coded Cards](screenshots/Activity5/hardCodedCards.png)
+
+We reused the Card component to insert album objects using an array of albums and then passing them into a function called renderedList.  
+```
+const renderedList = () => {
+    return albumList.map((album) => {
+      return (
+        <Card
+          albumTitle={album.title}
+          albumDescription={album.description}
+          buttonText='OK'
+          imgURL={album.image}
+        />
+      );
+    });
+}
+```
+
+This function takes the entire albumList (that is currently hard coded) and returns Card objects using the album.title, album.description, and album.image for each of the albums in the array.  The map function reminds me of a forEach function except the map function creates a new array without changing the original array.  The forEach function can alter the original array, but will not create a new array.
+
+<br>
+<br>
+
 ## Activity 4 2024/1/28
 Still having issues with the tracks showing with the toggle.  I just got rid of the toggle class to show that the tracks are being returned and display correctly.  So, something is wrong with the toggle.
 
