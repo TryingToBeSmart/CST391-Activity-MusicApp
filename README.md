@@ -1,5 +1,24 @@
 # CST391-Activity
 
+## Activity 6 2024/2/11
+I'm still enjoying React!  It feels like it just makes much more sense to me than Angular for some reason.  Hooks are great!  Just initialize the original state value, then pass the mutating method and the new value with every state change.  
+
+We were able to use a dataSource file that gets the JSON data from the Express API that is running and gets data from the MAMP server using axios.  This is set into motion with the useEffect hook calling the loadAlbums function which uses the dataSource object to asynchronously get all the albums (dataSource.get('/albums')) from the Express server and call the setAlbumList function to turn that JSON into an array and update the state of the albumList array.  Then when the div element in the return portion of App.js calls the renderedList function Card objects are displayed using the album data. 
+This is shown in the image below:
+
+![List from API](screenshots/Activity%206/firstList.png)
+
+Then, every time the state changes in the search form, hooks are used to change the state of the inputText.  When the onSubmit is triggered inside the SearchForm, the renderedList function looks for any text in the searchPhrase and if there is a match in the album.description portion of the array, then those objects will be displayed.
+Below is an example of searching for 'pink.'
+
+![Search for Pink](screenshots/Activity%206/search_pink.png)
+
+
+
+
+<br>
+<br>
+
 ## Activity 5 2024/2/4
 So far React is much easier to understand than Angular; maybe the instructions are just more clear.  Everything is working as described at least.  Like Angular, React has a component design.  It appears that only 1 file per component is needed to define the function and view of the component.  The view portion uses the JSX 'language' to define what the component will look like.  JSX looks similar to HTML, "but is really Javascript that is unique to React," according to the activity instructions.  I really liked how easy it was to define component properties in the component and then define their values in the other component that is using it.  
 
