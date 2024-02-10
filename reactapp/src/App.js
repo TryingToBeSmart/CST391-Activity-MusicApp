@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-import Card from "./Card";
-import SearchForm from "./SearchForm";
 import "./App.css";
-import dataSource from './dataSource';
+import dataSource from "./dataSource";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SearchAlbum from "./SearchAlbum";
+import NavBar from "./NavBar";
+import NewAlbum from "./NewAlbum";
+import OneAlbum from "./OneAlbum";
 
 const App = (props) => {
   const [searchPrase, setSearchPhrase] = useState("");
   const [albumList, setAlbumList] = useState([]);
-
-  const updateSearchResults = (phrase) => {
-    console.log("phrase: " + phrase);
-    setSearchPhrase(phrase);
-  };
+  const [currentlySelectedAlbumId, setCurrentlySelectedAlbumId] = useState(0);
+  let refresh = false;
 
   // Setup initialization callback
   useEffect(() => {
@@ -20,37 +20,66 @@ const App = (props) => {
   }, [searchPrase]);
 
   const loadAlbums = async () => {
-    const response = await dataSource.get('/albums');
+    const response = await dataSource.get("/albums");
 
     setAlbumList(response.data);
-  }
+  };
 
-  const renderedList = () => {
-    return albumList.map((album) => {
-      if (
-        album.description.toLowerCase().includes(searchPrase.toLowerCase()) ||
-        searchPrase === ""
-      )
-        return (
-          <Card
-            key={album.id}
-            albumTitle={album.title}
-            albumDescription={album.description}
-            buttonText="OK"
-            imgURL={album.image}
-          />
-        );
-      else console.log("Does not match: " + searchPrase);
-    });
+  const updateSearchResults = async (phrase) => {
+    console.log("Phrase is: ", phrase);
+    setSearchPhrase(phrase);
+    // const response = await dataSource.get('/albums/search/description' + phrase);
+    // setAlbumList(response.data);
+  };
+
+  console.log("albumList: ", albumList);
+  const renderedList = albumList.filter((album) => {
+    if (
+      album.description.toLowerCase().includes(searchPrase.toLowerCase()) ||
+      searchPrase === ""
+    ) {
+      return true;
+    }
+    return false;
+  });
+
+  console.log("renderedList: ", renderedList);
+
+  const updateSingleAlbum = (id, navigate) => {
+    console.log("update Single Album: ", id);
+    console.log("Update Single Album navigate: ", navigate);
+    var indexNumber = 0;
+    for (var i = 0; i < albumList.length; ++i) {
+      if (albumList[i].id === id) indexNumber = i;
+    }
+    setCurrentlySelectedAlbumId(indexNumber);
+    console.log("update path: ", "/show/" + indexNumber);
+    navigate("/show/" + indexNumber);
   };
 
   return (
-    <div>
-      <div className="container">
-        <SearchForm onSubmit={updateSearchResults} />
-      </div>
-      <div className="container">{renderedList()}</div>
-    </div>
+    <BrowserRouter>
+      <NavBar />
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={
+            <SearchAlbum
+              updateSearchResults={updateSearchResults}
+              albumList={renderedList}
+              updateSingleAlbum={updateSingleAlbum}
+            />
+          }
+        />
+        <Route exact path="/new" element={<NewAlbum />} />
+        <Route
+          exact
+          path="/show/:albumId"
+          element={<OneAlbum album={albumList[currentlySelectedAlbumId]} />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

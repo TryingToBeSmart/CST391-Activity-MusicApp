@@ -13,6 +13,8 @@ Below is an example of searching for 'pink.'
 
 ![Search for Pink](screenshots/Activity%206/search_pink.png)
 
+<br>
+
 
 
 
