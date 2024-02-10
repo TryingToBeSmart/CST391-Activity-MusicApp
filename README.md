@@ -1,6 +1,7 @@
 # CST391-Activity
 
 ## Activity 6 2024/2/11
+### Part 1
 I'm still enjoying React!  It feels like it just makes much more sense to me than Angular for some reason.  Hooks are great!  Just initialize the original state value, then pass the mutating method and the new value with every state change.  
 
 We were able to use a dataSource file that gets the JSON data from the Express API that is running and gets data from the MAMP server using axios.  This is set into motion with the useEffect hook calling the loadAlbums function which uses the dataSource object to asynchronously get all the albums (dataSource.get('/albums')) from the Express server and call the setAlbumList function to turn that JSON into an array and update the state of the albumList array.  Then when the div element in the return portion of App.js calls the renderedList function Card objects are displayed using the album data. 
@@ -15,6 +16,35 @@ Below is an example of searching for 'pink.'
 
 <br>
 
+### Part 2
+
+We added routing to our React app by using the BrowserRouter, Routes, and Route APIs from the react-router-dom.  This allows us to define URL paths and link them with React components that we define in their own .js files.  The syntax looks like this:
+```
+<BrowserRouter>
+  <Routes>
+    <Route path='/' element={<Component />}>
+  </Routes>
+</BrowserRouter>
+```
+For now, we just defined the routes in the App.js, but I wonder if we want to set up a RoutingComponent for these routes.
+
+We also added something that the activity didn't discuss: the refresh boolean argument in the useEffect hook.  It looks like that is an optional argument that prevents the loadAlbums() function from being called multiple times; loadAlbums is only called when 'refresh' changes.
+```
+let refresh = false;
+
+useEffect(() => {
+  loadAlbums();
+}, [refresh]);
+```
+
+Main page after adding routing
+![Main](screenshots/Activity%206/main_with_routing.png)
+
+Search after adding routing
+![Search](screenshots/Activity%206/search_with_routing.png)
+
+New page (unimplemented) after adding routing
+![New](screenshots/Activity%206/new_with_routing.png)
 
 
 

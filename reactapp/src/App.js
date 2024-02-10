@@ -17,7 +17,7 @@ const App = (props) => {
   useEffect(() => {
     // Update the album list
     loadAlbums();
-  }, [searchPrase]);
+  }, [refresh]);
 
   const loadAlbums = async () => {
     const response = await dataSource.get("/albums");
