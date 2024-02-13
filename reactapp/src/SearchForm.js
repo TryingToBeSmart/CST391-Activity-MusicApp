@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const SearchForm = (props) => {
   const [inputText, setInputText] = useState("");
@@ -16,12 +16,12 @@ const SearchForm = (props) => {
   return (
     <div>
       <form onSubmit={handleFormSubmit}>
-        <div className='form-group'>
-          <label htmlFor='search-term'>Search for</label>
+        <div className="form-group">
+          <label htmlFor="search-term">Search for</label>
           <input
-            type='text'
-            className='form-control'
-            placeholder='Enter search term here'
+            type="text"
+            className="form-control"
+            placeholder="Enter search term here"
             onChange={handleChangeInput}
           />
         </div>
