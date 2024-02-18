@@ -4,7 +4,7 @@ import dataSource from "./dataSource";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SearchAlbum from "./SearchAlbum";
 import NavBar from "./NavBar";
-import NewAlbum from "./NewAlbum";
+import EditAlbum from "./EditAlbum";
 import OneAlbum from "./OneAlbum";
 
 const App = (props) => {
@@ -45,41 +45,63 @@ const App = (props) => {
 
   console.log("renderedList: ", renderedList);
 
-  const updateSingleAlbum = (id, navigate) => {
+  const updateSingleAlbum = (id, navigate, uri) => {
     console.log("update Single Album: ", id);
     console.log("Update Single Album navigate: ", navigate);
     var indexNumber = 0;
     for (var i = 0; i < albumList.length; ++i) {
-      if (albumList[i].id === id) indexNumber = i;
+      if (albumList[i].albumId === id) indexNumber = i;
     }
     setCurrentlySelectedAlbumId(indexNumber);
-    console.log("update path: ", "/show/" + indexNumber);
-    navigate("/show/" + indexNumber);
+    let path = uri + indexNumber;
+    console.log("path: ", path);
+    navigate(path);
+  };
+
+  const onEditAlbum = (navigate) => {
+    loadAlbums();
+    navigate("/");
   };
 
   return (
-    <BrowserRouter>
-      <NavBar />
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={
-            <SearchAlbum
-              updateSearchResults={updateSearchResults}
-              albumList={renderedList}
-              updateSingleAlbum={updateSingleAlbum}
-            />
-          }
-        />
-        <Route exact path="/new" element={<NewAlbum />} />
-        <Route
-          exact
-          path="/show/:albumId"
-          element={<OneAlbum album={albumList[currentlySelectedAlbumId]} />}
-        />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <SearchAlbum
+                updateSearchResults={updateSearchResults}
+                albumList={renderedList}
+                updateSingleAlbum={updateSingleAlbum}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/new"
+            element={<EditAlbum onEditAlbum={onEditAlbum} />}
+          />
+          <Route
+            exact
+            path="/edit/:albumId"
+            element={
+              <EditAlbum
+                onEditAlbum={onEditAlbum}
+                album={albumList[currentlySelectedAlbumId]}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/show/:albumId"
+            element={<OneAlbum album={albumList[currentlySelectedAlbumId]} />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 };
 

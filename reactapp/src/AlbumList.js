@@ -3,9 +3,9 @@ import Card from "./Card";
 import { useNavigate } from "react-router-dom";
 
 const AlbumList = (props) => {
-  const handlSelectionOne = (albumId) => {
-    console.log("Seelected ID: " + albumId);
-    props.onClick(albumId, navigator);
+  const handleSelectionOne = (albumId, uri) => {
+    console.log("Selected ID: " + albumId);
+    props.onClick(albumId, navigator, uri);
   };
 
   console.log("props albumList: ", props);
@@ -13,13 +13,13 @@ const AlbumList = (props) => {
   const albums = props.albumList.map((album) => {
     return (
       <Card
-        key={album.id}
-        albumId={album.id}
+        key={album.albumId}
+        albumId={album.albumId}
         albumTitle={album.title}
         albumDescription={album.description}
-        buttonText="OK"
+        buttonText="View"
         imgURL={album.image}
-        onClick={handlSelectionOne}
+        onClick={handleSelectionOne}
       />
     );
   });

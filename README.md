@@ -1,5 +1,34 @@
 # CST391-Activity
 
+## Activity 7 2024/2/18
+### Part 1
+We added the option to dynamically create new album.  As the input text boxes change, the values of each property are updated dynamically by using the onChange events.  When the form is submitted, the handleFormSubmit function is called which creates a new album object using the updated values and adds it to the database.  The onNewAlbum function is called in the parent component (App.js) which then reloads all of the albums and navigates the user back to the main page.
+
+Create Album
+![](screenshots/Act%207/Create_Album.png)
+
+Back to Main page with new album
+![](screenshots/Act%207/list.png)
+
+### Part 2
+
+Now added support to edit and view individual albums.  We took a clever approach by updating the old NewAlbum component to be the EditAlbum component that can be used to create new albums or edit existing albums depending on:
+```
+  // If an album is provided in 'props', then we are editing an album.
+  // Set album to the provided album and set newAlbumCreation to false.
+  if (props.album) {
+    album = props.album;
+    newAlbumCreation = false;
+  }
+```
+Then, in my addition, the form is rendered with either the content from the selected album if it is the editAlbum version, or placeholder content if it is the newAlbum version.  I also added the functionality for the Edit button in the OneAlbum card to navigate to edit the album.
+
+Edit Album
+![](screenshots/Act%207/edit.png)
+
+Show Album
+![](screenshots/Act%207/show.png)
+
 ## Activity 6 2024/2/11
 ### Part 1
 I'm still enjoying React!  It feels like it just makes much more sense to me than Angular for some reason.  Hooks are great!  Just initialize the original state value, then pass the mutating method and the new value with every state change.  

@@ -1,6 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const OneAlbum = (props) => {
+  const navigate = useNavigate();
+
+  const handleEditClick = () => {
+    navigate(`/edit/${props.album.id}`);
+  };
+
   return (
     <div className="container">
       <h2>Album Details for {props.album.title}</h2>
@@ -18,9 +25,9 @@ const OneAlbum = (props) => {
               <div className="list-group">
                 <li>Show the album's tracks here</li>
               </div>
-              <a href="/#" className="btn btn-primary">
+              <button onClick={handleEditClick} className="btn btn-primary">
                 Edit
-              </a>
+              </button>
             </div>
           </div>
         </div>
